@@ -1,7 +1,7 @@
 # Vanilla JS Gallery
 A simple gallery using vanilla JS and some html manipulation
 
-##Description
+## Description
 My fifth attempt at Web Dev in a class setting. 
 In this case, it was an improvement over a previous project.
 In the previous project, I used jQuery and a very simple html setup 
