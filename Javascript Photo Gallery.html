@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Improved Photo Gallery!</title>
+    <style>
+      body {
+        background-color: #8ed081;
+      }
+
+      div {
+        text-align: center;
+      }
+
+      .other-img {
+        opacity: 0.5;
+      }
+      #selected {
+        border-style: solid;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>Our Trip to Disney World!</h1>
+
+      <div id="main-img-container">
+        <img
+          id="main-img"
+          src="./Images/JSPG_Image7.JPG"
+          height="275"
+          width="275"
+        />
+
+        <h3 id="main-img-caption"></h3>
+      </div>
+
+      <div id="random-img-container">
+        <img id="random-img1" height="200" width="200" />
+
+        <img id="random-img2" height="200" width="200" />
+
+        <img id="random-img3" height="200" width="200" />
+      </div>
+
+      <button type="button" onclick="setRandomImgs();">Random New Set</button>
+
+      <hr />
+
+      <div id="other-img-container">
+        <!--
+			<img class="other-img" height="75" width="75">
+			<img class="other-img" height="75" width="75">			
+			<img class="other-img" height="75" width="75">	
+			<img class="other-img" height="75" width="75">	
+			<img class="other-img" height="75" width="75">	
+			<img class="other-img" height="75" width="75">	
+			<img class="other-img" height="75" width="75">	
+			<img class="other-img" height="75" width="75">	
+			<img class="other-img" height="75" width="75">	
+			<img class="other-img" height="75" width="75">	-->
+      </div>
+    </div>
+
+    <script>
+      var imgSrc = [
+        "./Images/JSPG_Image0.JPG",
+        "./Images/JSPG_Image1.JPG",
+        "./Images/JSPG_Image2.JPG",
+        "./Images/JSPG_Image3.JPG",
+        "./Images/JSPG_Image4.JPG",
+        "./Images/JSPG_Image5.JPG",
+        "./Images/JSPG_Image6.JPG",
+        "./Images/JSPG_Image7.JPG",
+        "./Images/JSPG_Image8.JPG",
+        "./Images/JSPG_Image9.JPG"
+      ];
+
+      var imgCaptions = [
+        "Germany in Epcot!",
+        "Friendship Celebration in Magic Kingdom",
+        "Disney World's version of the Jungle Cruise",
+        "Be Our Guest Dinner at the New Fantasyland",
+        "Arriving day 1 at Epcot",
+        "Lion Fish: Poisonous Alive, Delicious Dead",
+        "Festival of Fantasy Parade Time",
+        "Old Sci-Fi Movies Time",
+        "Cruise around the World through Epcot",
+        "Day 1: Pictures with the Emotions"
+      ];
+
+      loadOtherImgs();
+      setRandomImgs();
+
+      function loadOtherImgs() {
+        for (var i = 0; i < imgSrc.length; i++) {
+          document.querySelector("#other-img-container").innerHTML +=
+            '<img height="175" width="175" src="' +
+            imgSrc[i] +
+            '" class="other-img" title="' +
+            imgCaptions[i] +
+            '" onclick="setMainImg(this);" onmouseenter="opacityUp(this);" onmouseleave="opacityDown(this);">';
+        }
+      }
+
+      function opacityUp(element) {
+        element.style.opacity = 1.0;
+      }
+      function opacityDown(element) {
+        element.style.opacity = 0.5;
+      }
+
+      function setMainImg(element) {
+        var oldElem = document.getElementById("selected");
+
+        if (oldElem != null) {
+          oldElem.removeAttribute("id");
+        }
+
+        element.setAttribute("id", "selected");
+
+        document.getElementById("main-img").src = element.getAttribute("src");
+        document.getElementById("main-img-caption").innerHTML = element.title;
+      }
+
+      function setRandomImgs() {
+        var maximum = 9;
+        var minimum = 0;
+        var randomNumber =
+          Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+        var randomNumber2 =
+          Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+        var randomNumber3 =
+          Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+
+        document.getElementById("random-img1").src =
+          "./Images/JSPG_Image" + randomNumber + ".JPG";
+        document.getElementById("random-img2").src =
+          "./Images/JSPG_Image" + randomNumber2 + ".JPG";
+        document.getElementById("random-img3").src =
+          "./Images/JSPG_Image" + randomNumber3 + ".JPG";
+      }
+    </script>
+  </body>
+</html>
